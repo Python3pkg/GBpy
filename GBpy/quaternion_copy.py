@@ -8,7 +8,7 @@
 
 import numpy as np
 # import vector3d as vec3d
-import geometry_tools as gmt
+from . import geometry_tools as gmt
 
 
 ######################################################################

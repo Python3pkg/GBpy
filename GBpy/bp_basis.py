@@ -8,11 +8,11 @@
 
 import numpy as np
 from fractions import gcd
-import integer_manipulations as int_man
-import find_csl_dsc as fcd
+from . import integer_manipulations as int_man
+from . import find_csl_dsc as fcd
 import sys
 import os
-from tools import Col, lll_reduction, smith_nf, extgcd
+from .tools import Col, lll_reduction, smith_nf, extgcd
 # -----------------------------------------------------------------------------------------------------------
 
 
@@ -55,7 +55,7 @@ def check_2d_csl(l_pl1_g1, l_pl2_g1, l_csl_g1):
     else:
         raise Exception('The 2D CSL does not contain base1.')
 
-    print str1
+    print(str1)
     txt = Col()
     txt.c_prnt(str2, color)
     # --------------------------
@@ -67,7 +67,7 @@ def check_2d_csl(l_pl1_g1, l_pl2_g1, l_csl_g1):
     else:
         raise Exception('The 2D CSL does not contain base2.')
 
-    print str1
+    print(str1)
     txt = Col()
     txt.c_prnt(str2, color)
 # -----------------------------------------------------------------------------------------------------------

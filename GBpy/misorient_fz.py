@@ -10,7 +10,7 @@ import numpy as np
 import sys
 import pickle
 import os
-import quaternion as quat
+from . import quaternion as quat
 # -----------------------------------------------------------------------------------------------------------
 
 

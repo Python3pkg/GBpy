@@ -40,7 +40,7 @@ def csl_dsc_genlattice():
     ### Common
     mat_contents = sio.loadmat('432_CommonCSL.mat')
     for cnt in range(mat_contents['Sigma_Rots'].shape[1]):
-        print 'case: ', cnt + 1
+        print('case: ', cnt + 1)
         Sigma_CSL = mat_contents['Sigma_Rots'][0, cnt][0][0]
         R_N_tmp = mat_contents['Sigma_Rots'][0, cnt][0][1]
         R_D_tmp = mat_contents['Sigma_Rots'][0, cnt][0][2]
@@ -62,12 +62,12 @@ def csl_dsc_genlattice():
         ###########printing and checking #############
         txt = Col()
         txt.c_prnt('CSL', 'yel')
-        print L_CSL_G1
+        print(L_CSL_G1)
         if check == True :check_csl_finder_smith(R_G1toG2_G1, Sigma_CSL, L_G1_GO1, L_CSL_G1)
         txt.c_prnt('DSC', 'dgrn')
-        print L_DSC_G1
+        print(L_DSC_G1)
         if check == True: check_dsc_finder(R_G1toG2_G1, Sigma_CSL, L_G1_GO1, L_DSC_G1, L_CSL_G1)
-        print '\n-------------------'
+        print('\n-------------------')
         ##############################################
 
     return L_CSL_G1, L_DSC_G1

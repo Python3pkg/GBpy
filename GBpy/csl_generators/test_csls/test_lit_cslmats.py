@@ -47,14 +47,14 @@ import csl_utility_functions as csl_util
 def compute_sig_rots(csl_rots, l1, sig_type):
         [tau, kmax] = csl_util.compute_inp_params(l1, sig_type)
         csl_rots_m = csl_rots['rots']
-        k1 = csl_rots_m.keys()
+        k1 = list(csl_rots_m.keys())
         sig_inds = {}
         for ct1 in k1:           
                 if ct1[-1] in string.ascii_lowercase:
                         tstr1 = ct1[0:-1]
                 else:
                         tstr1 = ct1
-                if tstr1 in sig_inds.keys():
+                if tstr1 in list(sig_inds.keys()):
                         sig_inds[tstr1] += 1
                 else:
                         sig_inds[tstr1] = 1
@@ -62,7 +62,7 @@ def compute_sig_rots(csl_rots, l1, sig_type):
 
         sig_rots_m = {}
         sig_inds1 = {}
-        for ct1 in sig_inds.keys():
+        for ct1 in list(sig_inds.keys()):
                 sig_rots_m[ct1] = np.zeros((sig_inds[ct1], 3, 3))
                 sig_rots_m[ct1][:] = np.NAN
 
@@ -72,7 +72,7 @@ def compute_sig_rots(csl_rots, l1, sig_type):
                 else:
                         tstr1 = ct1
 
-                if tstr1 in sig_inds1.keys():
+                if tstr1 in list(sig_inds1.keys()):
                         sig_inds1[tstr1] += 1
                         if csl_rots['type'] == 'quads':
                                 if l1.pearson[0:2]=='hR':
@@ -114,7 +114,7 @@ def compute_sig_rots(csl_rots, l1, sig_type):
                                 sig_rots_m[tstr1][sig_inds1[tstr1], :, :] = csl_rots_m[ct1]
 
         sig_rots_m1 = {}
-        for ct1 in sig_rots_m.keys():
+        for ct1 in list(sig_rots_m.keys()):
                 sig_rots_m1[ct1] ={}
                 if csl_rots['type'] == 'quads':
                         mats1 = sig_rots_m[ct1]
@@ -170,7 +170,7 @@ def disorients(sig_rots_m1, l1):
         cryst_ptgrp = csl_util.proper_ptgrp(l1.cryst_ptgrp)
 
         sig_rots_m2 = {}
-        for ct1 in sig_rots_m1.keys():
+        for ct1 in list(sig_rots_m1.keys()):
                 n_mats = sig_rots_m1[ct1]['N']
                 d_mats = sig_rots_m1[ct1]['D']
                 msz = np.shape(n_mats)[0]
@@ -193,7 +193,7 @@ def compare_sig_rots(sig_rots_m1, sig_rots_p, l1):
         cryst_ptgrp = csl_util.proper_ptgrp(l1.cryst_ptgrp)
         l1.cryst_ptgrp = cryst_ptgrp
 
-        for ct1 in sig_rots_m1.keys():
+        for ct1 in list(sig_rots_m1.keys()):
                 rot_np = sig_rots_p[ct1]['N']
                 rot_dp = sig_rots_p[ct1]['D']
 
@@ -207,7 +207,7 @@ def compare_sig_rots(sig_rots_m1, sig_rots_p, l1):
                         if msz1 < msz2:
                                 raise Exception('No Good')
                         if msz1 > msz2:
-                                print('msz1= %d \t msz2 = %d \n' %(msz1, msz2))
+                                print(('msz1= %d \t msz2 = %d \n' %(msz1, msz2)))
 
                         inds = []
                         for ct3 in range(msz2):
@@ -235,7 +235,7 @@ def compare_sig_rots(sig_rots_m1, sig_rots_p, l1):
                                 if (tcheck == 0):
                                         raise Exception('No Good')
                                 else:
-                                        print 'matp1 exists in mat_m'
+                                        print('matp1 exists in mat_m')
 
                 elif rot_nm.ndim == 2:
                         tn1 = rot_np[0, :, :]
@@ -254,7 +254,7 @@ def compare_sig_rots(sig_rots_m1, sig_rots_p, l1):
 
                         # if mat_ops.eq(mat_m, matp2, 1e-10):
                         if quat.eq(disquat_p2, disquat_m, 1e-10):
-                                print 'matp1 exists in mat_m'
+                                print('matp1 exists in mat_m')
                         else:
                                 raise Exception('No Good')
                 else:
@@ -276,7 +276,7 @@ def test_lit_common_cslmats(elem_type):
         sig_rots_m1 = compute_sig_rots(csl_rots, l1, sig_type)
         sig_rots_m2 = disorients(sig_rots_m1, l1)
 
-        for ct1 in sig_rots_m2.keys():
+        for ct1 in list(sig_rots_m2.keys()):
                 sig_rots_m3={}
                 sig_rots_p={}
                 sig_rots_p[ct1] = csl_util.csl_rotations(int(ct1), sig_type, l1)
@@ -295,13 +295,13 @@ def test_lit_specific_cslmats(elem_type, sig_type):
         jar1 = open(mat_file, 'rb')
         sig_rots = pickle.load(jar1)
 
-        for ct1 in sig_rots.keys():
-                print ct1
+        for ct1 in list(sig_rots.keys()):
+                print(ct1)
                 csl_rots = sig_rots[ct1]
                 l1 = csl_rots['lattice']
                 sig_rots_m1 = compute_sig_rots(csl_rots, l1, sig_type)
                 sig_rots_m2 = disorients(sig_rots_m1, l1)
-                for ct2 in sig_rots_m2.keys():
+                for ct2 in list(sig_rots_m2.keys()):
                         sig_rots_m3={}
                         sig_rots_p={}
                         sig_rots_p[ct2] = csl_util.csl_rotations(int(ct2), sig_type, l1)

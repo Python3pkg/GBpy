@@ -9,9 +9,9 @@
 import numpy as np
 # import sys
 # import os
-import integer_manipulations as int_man
-import misorient_fz as mis_fz
-import tools as trans
+from . import integer_manipulations as int_man
+from . import misorient_fz as mis_fz
+from . import tools as trans
 # -----------------------------------------------------------------------------------------------------------
 
 

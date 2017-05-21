@@ -7,11 +7,11 @@
 
 
 import numpy as np
-import integer_manipulations as int_man
-from tools import lll_reduction
-from tools import smith_nf
-from tools import message_display
-import bp_basis as bpb
+from . import integer_manipulations as int_man
+from .tools import lll_reduction
+from .tools import smith_nf
+from .tools import message_display
+from . import bp_basis as bpb
 # -----------------------------------------------------------------------------------------------------------
 
 
@@ -210,7 +210,7 @@ def check_csl_finder_smith(r_g1tog2_g1, Sigma, L_G1_GO1, L_CSL_G1):
     L_CSL_GO1 = np.dot(L_G1_GO1, L_CSL_G1)
     L_G2_GO1 = np.dot(R_G1ToG2_GO1, L_G1_GO1)
 
-    print '*** CSL checks ***'
+    print('*** CSL checks ***')
     # -----Check-1: L_CSL_GO1 is defined in the L_G1_GO1 lattice
     CheckBase1 = np.dot(L_GO1_G1, L_CSL_GO1)
     Precis = 10
@@ -322,7 +322,7 @@ def check_dsc_finder(R_G1ToG2_G1, Sigma, L_G1_GO1, L_DSC_G1, L_CSL_G1):
     L_CSL_GO1 = np.dot(L_G1_GO1, L_CSL_G1)
     L_G2_GO1 = np.dot(R_G1ToG2_GO1, L_G1_GO1)
 
-    print '*** DSC checks ***'
+    print('*** DSC checks ***')
     # -----Check-1:
     Check1 = np.dot(np.linalg.inv(L_DSC_GO1), L_G1_GO1)
     Precis = 10
@@ -374,7 +374,7 @@ def find_csl_dsc(L_G1_GO1, R_G1ToG2_G1):
     L_G1_GO1 = np.array(L_G1_GO1)
 
     L_CSL_G1 = csl_finder_smith(R_G1ToG2_G1)
-    print np.dot(np.linalg.inv(R_G1ToG2_G1), L_CSL_G1)
+    print(np.dot(np.linalg.inv(R_G1ToG2_G1), L_CSL_G1))
 
     L_CSL_G1 = bpb.reduce_go1_mat(L_CSL_G1, L_G1_GO1)
 

@@ -83,9 +83,9 @@ def test_cubic_cslmats(l1):
                 sig_rots_m[str(sig_num)]['N'] = n_mat
                 sig_rots_m[str(sig_num)]['D'] = d_mat
 
-        sig_vals = sig_rots_m.keys()
+        sig_vals = list(sig_rots_m.keys())
         for ct1 in sig_vals:
-                print ct1
+                print(ct1)
                 rot_np = sig_rots_p[str(ct1)]['N']
                 rot_dp = sig_rots_p[str(ct1)]['D']
 
@@ -137,7 +137,7 @@ def test_cubic_cslmats(l1):
 
                         # if mat_ops.eq(mat_m, matp2, 1e-10):
                         if quat.eq(disquat_p2, disquat_m, 1e-10):
-                                print 'matp1 exists in mat_m'
+                                print('matp1 exists in mat_m')
                         # else:
                         #         raise Exception('No Good')
                 else:

@@ -9,7 +9,7 @@
 import numpy as np
 import os
 import sys
-from tools import vrrotvec2mat
+from .tools import vrrotvec2mat
 
 class Lattice(object):
     """

@@ -7,8 +7,8 @@
 
 
 import numpy as np
-import quaternion as quat
-import vector3d as vec3d
+from . import quaternion as quat
+from . import vector3d as vec3d
 # -----------------------------------------------------------------------------------------------------------
 
 

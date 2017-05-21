@@ -7,7 +7,7 @@
 
 
 import numpy as np
-import geometry_tools as gmt
+from . import geometry_tools as gmt
 
 ######################################################################
 class vector3d(np.ndarray):

@@ -7,8 +7,8 @@
 
 
 import numpy as np
-import tools as tools
-import geometry_tools as gmt
+from . import tools as tools
+from . import geometry_tools as gmt
 
 
 ######################################################################
@@ -553,7 +553,7 @@ def display(q, p_flag=True):
         str1 += ("%f \t %f \t %f \t %f \t %d \n" %
                   (q[0, ct1], q[1, ct1], q[2, ct1], q[3, ct1], q[4, ct1]))
     if p_flag == True:
-        print str1
+        print(str1)
     return str1
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -876,7 +876,7 @@ def mat2quat(mat, rot_type='proper'):
     ---------
     tools.vrrotmat2vec
     """
-    from tools import vrrotmat2vec as vrrotmat2vec
+    from .tools import vrrotmat2vec as vrrotmat2vec
     ax_ang = vrrotmat2vec(mat, rot_type)
 
     t1_vecs = ax_ang[:3].T

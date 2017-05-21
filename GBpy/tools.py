@@ -8,7 +8,7 @@
 
 import numpy as np
 import os, sys, inspect
-import integer_manipulations as int_man
+from . import integer_manipulations as int_man
 # -----------------------------------------------------------------------------------------------------------
 
 
@@ -60,7 +60,7 @@ class Col(object):
             a = self.amber
         else:
             raise Exception('The color you selected is not acceptable')
-        print a + text + self.ENDC
+        print(a + text + self.ENDC)
 # -----------------------------------------------------------------------------------------------------------
 
 
@@ -103,7 +103,7 @@ def lll_reduction(matrix, delta=0.75):
 
         b[:, 0] = a[:, 0]
         m[0] = np.dot(b[:, 0], b[:, 0])
-        for i in xrange(1, sz[1]):
+        for i in range(1, sz[1]):
             u[i, 0:i] = np.dot(a[:, i].T, b[:, 0:i]) / m[0:i]
             b[:, i] = a[:, i] - np.dot(b[:, 0:i], u[i, 0:i].T)
             m[i] = np.dot(b[:, i], b[:, i])
@@ -112,7 +112,7 @@ def lll_reduction(matrix, delta=0.75):
 
         while k <= sz[1]:
             # Size reduction.
-            for i in xrange(k - 1, 0, -1):
+            for i in range(k - 1, 0, -1):
                 q = round(u[k - 1, i - 1])
                 if q != 0:
                     # Reduce the k-th basis vector.
@@ -135,7 +135,7 @@ def lll_reduction(matrix, delta=0.75):
                 a[:, k - 1] = a[:, k - 2].copy()
                 a[:, k - 2] = v
                 # Update the Gram-Schmidt coefficients
-                for s in xrange(k - 1, k + 1):
+                for s in range(k - 1, k + 1):
                     u[s - 1, 0:(s - 1)] = np.dot(a[:, s - 1].T,
                                             b[:, 0:(s - 1)]) / m[0:(s - 1)]
                     b[:, s - 1] = a[:, s - 1] - np.dot(b[:, 0:(s - 1)],
@@ -213,7 +213,7 @@ def message_display(CheckMatrix, Checknumber, Message, Precis):
     in case the matrix passed to it is not integral.`
     """
     cond = int_man.int_check(CheckMatrix, Precis)
-    print Checknumber, '.', Message, '-> ',
+    print(Checknumber, '.', Message, '-> ', end=' ')
     txt = Col()
     if cond.all():
         txt.c_prnt('YES', 'yel')
@@ -676,7 +676,7 @@ def quat2mat(q):
     --------
     mat2quat, axang2quat
     """
-    import quaternion as quat
+    from . import quaternion as quat
     sz = quat.get_size(q)
     q0 = quat.getq0(q)
     q1 = quat.getq1(q)
@@ -730,7 +730,7 @@ def mat2quat(mat, rot_type='proper'):
     --------
     quat2mat, axang2quat
     """
-    import quaternion as quat
+    from . import quaternion as quat
     ax_ang = vrrotmat2vec(mat, rot_type)
     q0 = np.cos(ax_ang[3, :]/2)
     q1 = ax_ang[0, :]*np.sin(ax_ang[3, :]/2)
@@ -754,7 +754,7 @@ def axang2quat(ax_ang):
     ----------
     quaternion_rep: numpy array (5 x 1)
     """
-    import quaternion as quat
+    from . import quaternion as quat
 
     if ax_ang.ndim == 1:
         if np.size(ax_ang) == 5:
@@ -912,7 +912,7 @@ def test_unique_rows():
     prec = 1.e-5
     mat = np.array([[-1e-6, 1, 1], [1e-7, 1, 1], [0, 1, 1], [1, 1, 1]])
     c, ia, ic = unique_rows_tol(mat, prec, True, True)
-    print unique_rows_tol(mat, prec, True, True)
+    print(unique_rows_tol(mat, prec, True, True))
 # -----------------------------------------------------------------------------------------------------------
 
 
@@ -933,6 +933,6 @@ def test_lll_reduction():
             # a, H = lll_reduction_3by2(Mat['Matrix'][i])
             b = lll_reduction(Mat[j][i])
             # print Mat['Matrix'][i], '\n reduced: \n', H, '\n-------\n'
-            print '\n______________________________________________\n'
-            print Mat[j][i], '\n reduced: \n', b, '\n-------\n'
+            print('\n______________________________________________\n')
+            print(Mat[j][i], '\n reduced: \n', b, '\n-------\n')
 # -----------------------------------------------------------------------------------------------------------

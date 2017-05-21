@@ -50,21 +50,21 @@ def test_tet_common_cslmats(l1):
         
         if csl_rots['type'] == 'matrices':
                 csl_rots_m = csl_rots['rots']
-                k1 = csl_rots_m.keys()
+                k1 = list(csl_rots_m.keys())
                 sig_inds = {}
                 for ct1 in k1:                        
                         if ct1[-1] in string.ascii_lowercase:
                                 tstr1 = ct1[0:-1]
                         else:
                                 tstr1 = ct1
-                        if tstr1 in sig_inds.keys():
+                        if tstr1 in list(sig_inds.keys()):
                                 sig_inds[tstr1] += 1
                         else:
                                 sig_inds[tstr1] = 1
 
                 sig_rots_m = {}
                 sig_inds1 = {}
-                for ct1 in sig_inds.keys():
+                for ct1 in list(sig_inds.keys()):
                         sig_rots_m[ct1] = np.zeros((sig_inds[ct1], 3, 3))
                 for ct1 in k1:
                         if ct1[-1] in string.ascii_lowercase:
@@ -72,7 +72,7 @@ def test_tet_common_cslmats(l1):
                         else:
                                 tstr1 = ct1
 
-                        if tstr1 in sig_inds1.keys():
+                        if tstr1 in list(sig_inds1.keys()):
                                 sig_inds1[tstr1] += 1
                                 sig_rots_m[tstr1][sig_inds1[tstr1], :, :] = csl_rots_m[ct1]
                         else:
@@ -80,7 +80,7 @@ def test_tet_common_cslmats(l1):
                                 sig_rots_m[tstr1][sig_inds1[tstr1], :, :] = csl_rots_m[ct1]
 
                 sig_rots_m1 = {}
-                for ct1 in sig_rots_m.keys():
+                for ct1 in list(sig_rots_m.keys()):
                         sig_rots_m1[ct1] ={}
                         sig_rots_m1[ct1]['N'] = sig_rots_m[ct1]
                         sig_rots_m1[ct1]['D'] = \
@@ -93,7 +93,7 @@ def test_tet_common_cslmats(l1):
         jar2 = open(pkl_file, 'rb')
         sig_rots_p = pickle.load(jar2)
 
-        for ct1 in sig_rots_m1.keys():
+        for ct1 in list(sig_rots_m1.keys()):
                 rot_np = sig_rots_p[ct1]['N']
                 rot_dp = sig_rots_p[ct1]['D']
 
@@ -129,7 +129,7 @@ def test_tet_common_cslmats(l1):
                                 if (tcheck == 0):
                                         raise Exception('No Good')
                                 else:
-                                        print 'matp1 exists in mat_m'
+                                        print('matp1 exists in mat_m')
 
                 elif rot_nm.ndim == 2:
                         tn1 = rot_np[0, :, :]
@@ -147,7 +147,7 @@ def test_tet_common_cslmats(l1):
 
                         # if mat_ops.eq(mat_m, matp2, 1e-10):
                         if quat.eq(disquat_p2, disquat_m, 1e-10):
-                                print 'matp1 exists in mat_m'
+                                print('matp1 exists in mat_m')
                         else:
                                 raise Exception('No Good')
                 else:

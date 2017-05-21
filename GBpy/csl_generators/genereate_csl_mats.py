@@ -58,7 +58,7 @@ sig_rots = {}
 sig_num = np.arange(100) + 1
 
 for i in sig_num:
-    print i
+    print(i)
     sig_rots[str(i)] = csl_util.csl_rotations(i, sig_type, l1)
 
 if sig_type == 'common':

@@ -6,14 +6,14 @@
 # Journal of Applied Crystallography 48, 585-588 (2015). doi:10.1107/S1600576715004446
 
 
-import lattice
-import bp_basis
-import csl_utility_functions
-import find_csl_dsc
-import generate_symm_ops
-import geometry_tools
-import integer_manipulations
-import misorient_fz
-import quaternion
-import tools
-import vector3d
+from . import lattice
+from . import bp_basis
+from . import csl_utility_functions
+from . import find_csl_dsc
+from . import generate_symm_ops
+from . import geometry_tools
+from . import integer_manipulations
+from . import misorient_fz
+from . import quaternion
+from . import tools
+from . import vector3d

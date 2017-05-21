@@ -7,7 +7,7 @@
 
 
 import numpy as np
-import quaternion as quat
+from . import quaternion as quat
 
 
 #############################################################
@@ -56,7 +56,7 @@ def rand_quat(n):
         q2[ct1] = x3*(np.sqrt((1 - x1**2 - x2**2)/(x3**2 + x4**2)))
         q3[ct1] = x4*(np.sqrt((1 - x1**2 - x2**2)/(x3**2 + x4**2)))
 
-    print q0**2 + q1**2 + q2**2 + q3**2
+    print(q0**2 + q1**2 + q2**2 + q3**2)
     return quat.Quaternion(q0, q1, q2, q3)
 
 # test_quats = rand_quat(10)
@@ -125,7 +125,7 @@ def test_indiv_methods(q):
     --------
     None
     """
-    print 'in human readable form\n', quat.display(q), '\n'
+    print('in human readable form\n', quat.display(q), '\n')
     # quat.display(q)
     
     q0 = quat.getq0(q)
@@ -133,20 +133,20 @@ def test_indiv_methods(q):
     q2 = quat.getq2(q)
     q3 = quat.getq3(q)
 
-    print 'q0 component/s', q0, '\n'
-    print 'q1 component/s', q1, '\n'
-    print 'q2 component/s', q2, '\n'
-    print 'q3 component/s', q3, '\n'
+    print('q0 component/s', q0, '\n')
+    print('q1 component/s', q1, '\n')
+    print('q2 component/s', q2, '\n')
+    print('q3 component/s', q3, '\n')
 
-    print 'type ', quat.get_type(q), '\n'
-    print 'size is ', quat.get_size(q), '\n'
+    print('type ', quat.get_type(q), '\n')
+    print('size is ', quat.get_size(q), '\n')
 
-    print 'antipodal ', quat.antipodal(q), '\n'
-    print 'inverse', quat.inverse(q), '\n'
+    print('antipodal ', quat.antipodal(q), '\n')
+    print('inverse', quat.inverse(q), '\n')
 
     st1 = quat.quat2mat(q)
-    print 'quat2mat ', st1, '\n'
-    print 'mat2quat, using matrices generated in test above', quat.mat2quat(st1), '\n'
+    print('quat2mat ', st1, '\n')
+    print('mat2quat, using matrices generated in test above', quat.mat2quat(st1), '\n')
 
     return
 
@@ -174,18 +174,18 @@ def test_indiv_methods(q):
 
 ### Testing eq
 q1 = rand_quat(5); q2 = rand_quat(1);
-print quat.eq(q1, q2);
+print(quat.eq(q1, q2));
 
 ### Testing eq
 q1 = rand_quat(1); q2 = rand_quat(5);
 q2[:, 2] = q1;
-print quat.eq(q1, q2);
+print(quat.eq(q1, q2));
 
 
 ### Testing eq
 q1 = rand_quat(5); q2 = rand_quat(5);
 q2[:, 2] = q1[:, 2]; q2[:, 4] = q1[:, 4]; q2[4,4] = -1;
-print quat.eq(q1, q2);
+print(quat.eq(q1, q2));
 
 
 
